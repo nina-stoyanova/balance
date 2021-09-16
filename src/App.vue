@@ -12,6 +12,7 @@
       <router-link to="/registration" class="link white--text"
         >Registration</router-link
       >
+      <router-link to="/search" class="link white--text">Search</router-link>
     </v-app-bar>
     <router-view />
   </v-app>

@@ -50,9 +50,13 @@ export default {
       loginAxios2(this.email, this.password)
         .then(() => {
           this.loggedInSuccess = true;
+          this.email = null;
+          this.password = null;
         })
         .catch(() => {
           this.loggedInError = true;
+          this.email = null;
+          this.password = null;
         });
     },
   },

@@ -16,10 +16,44 @@ export function loginAxios2(email, password) {
     const tokenPromise = serverPromise.then(function (response) {
         token = response.data.accessToken
         user = response.data.user
+
+        return response
     })
 
     return tokenPromise
 }
+
+
+export function registerAxios(email, firstName, lastName, password) {
+    const registerPromise = axios.post(URL + "auth/register", {
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        password: password
+    })
+
+    const tokenRegisterPromise = registerPromise.then(function (response) {
+        email = response.data.email
+        firstName = response.data.user.firstName
+        lastName = response.data.user.lastName
+        password = response.data.accessToken
+
+    })
+
+    return tokenRegisterPromise
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export function loginAxios(email, password) {
