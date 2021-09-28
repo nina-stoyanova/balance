@@ -24,6 +24,7 @@ export function loginAxios2(email, password) {
 }
 
 
+
 export function registerAxios(email, firstName, lastName, password) {
     const registerPromise = axios.post(URL + "auth/register", {
         email: email,
@@ -32,12 +33,7 @@ export function registerAxios(email, firstName, lastName, password) {
         password: password
     })
 
-    const tokenRegisterPromise = registerPromise.then(function (response) {
-        email = response.data.email
-        firstName = response.data.user.firstName
-        lastName = response.data.user.lastName
-        password = response.data.accessToken
-
+    const tokenRegisterPromise = registerPromise.then(function () {
     })
 
     return tokenRegisterPromise
@@ -45,63 +41,89 @@ export function registerAxios(email, firstName, lastName, password) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-export function loginAxios(email, password) {
-    return axios.post(URL + "auth/login", {
-        "email": email,
-        "password": password
-    })
-        .then(function (response) {
-            //handle success
-            token = response.data.accessToken
-            user = response.data.user
-        })
-}
-
-
-export function login(email, password) {
-    //to do - call the backend with axios/fetch
-    return fetch(URL + "auth/login", {
-        method: "POST",
+export function searchFood(food) {
+    const foodRequest = axios.get(URL + "food-items", {
         headers: {
-            "Content-Type": "application/json"
+            Authorization: "Bearer " + token
         },
-        body: JSON.stringify({
-            "email": email,
-            "password": password
-        })
+        params: {
+            page: 1,
+            limit: 10,
+            search: food
+        }
     })
-        .then(response => {
-            if (!response.ok) {
-                //create error object and reject if not a 2xx response code
-                let err = new Error("HTTP status code: " + response.status)
-                err.response = response
-                err.status = response.status
-                throw err
-            }
-            return response.JSON()
-        })
-        .then(body => {
-            token = body.accessToken
-            user = body.user
 
-            //return undefined
-        })
+    const foodResponse = foodRequest.then(function (response) {
+
+        let arrayResponse = response.data.items //this is the array items
+
+        return arrayResponse
+    })
+
+    return foodResponse
 }
 
-export function getUserEmail() {
-    if (user) {
-        return user.email
-    }
-    return ""
-}
+
+
+
+
+
+
+
+// export function getUserEmail() {
+//     if (user) {
+//         return user.email
+//     }
+//     return ""
+// }
+
+
+
+
+
+
+
+
+// export function loginAxios(email, password) {
+//     return axios.post(URL + "auth/login", {
+//         "email": email,
+//         "password": password
+//     })
+//         .then(function (response) {
+//             //handle success
+//             token = response.data.accessToken
+//             user = response.data.user
+//         })
+// }
+
+
+// export function login(email, password) {
+//     //to do - call the backend with axios/fetch
+//     return fetch(URL + "auth/login", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             "email": email,
+//             "password": password
+//         })
+//     })
+//         .then(response => {
+//             if (!response.ok) {
+//                 //create error object and reject if not a 2xx response code
+//                 let err = new Error("HTTP status code: " + response.status)
+//                 err.response = response
+//                 err.status = response.status
+//                 throw err
+//             }
+//             return response.JSON()
+//         })
+//         .then(body => {
+//             token = body.accessToken
+//             user = body.user
+
+//             //return undefined
+//         })
+// }
+

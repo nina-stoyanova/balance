@@ -4,9 +4,10 @@
       label="Search Food"
       required
       class="d-flex justify-center"
+      v-model="food"
     ></v-text-field>
 
-    <v-btn color="success" class="mt-2"> Search </v-btn>
+    <v-btn color="success" class="mt-2" @click="onSearchFood"> Search </v-btn>
 
     <v-list two-line class="mt-16">
       <v-list-item-group multiple>
@@ -62,6 +63,23 @@
   max-width: 450px;
 }
 </style>
+<script>
+import { searchFood } from "../services/api";
+
+export default {
+  data: () => ({
+    food: null,
+  }),
+  methods: {
+    onSearchFood() {
+      searchFood(this.food).then(function () {
+        //how to display items from array, list of objects
+        //save foods in data property
+      });
+    },
+  },
+};
+</script>
 
 
 

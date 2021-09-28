@@ -49,3 +49,22 @@
   }
 }
 </style>
+<script>
+export default {
+  // data: () => ({
+  //   email: null,
+  // }),
+  // computed: {
+  //   email: function () {
+  //     if (user) {
+  //       return user.email;
+  //     }
+  //     return "";
+  //   },
+  // },
+  // methods: {},
+  // mounted() {
+  //   this.email = getUserEmail();
+  // },
+};
+</script>

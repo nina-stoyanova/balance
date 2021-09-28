@@ -46,9 +46,10 @@ export default {
 
   methods: {
     onLogin() {
-      console.warn("values : ", this.email, this.password);
       loginAxios2(this.email, this.password)
         .then(() => {
+          //here we use the function from api
+          //export user from api
           this.loggedInSuccess = true;
           this.email = null;
           this.password = null;
